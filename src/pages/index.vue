@@ -37,12 +37,12 @@
         </div>
       </div>
 
-      <div class="type_totals_wrappers">
-        <div>
-          <p v-if="calculateDebt().abel > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().abel }} pesos</p>
-          <p v-if="calculateDebt().bonzo > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().bonzo }} pesos</p>
-        </div>
+      <div id="deb_wrapper">
+          <p v-if="calculateDebt().abel > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().abel }}</p>
+          <p v-if="calculateDebt().bonzo > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().bonzo }}</p>
       </div>
+
+
 
       <div id="saving_wrapper">
         <input type="text" class="" id="phone_number" v-model="phoneNumber" placeholder="+543413690080"/>
@@ -184,9 +184,9 @@ export default {
         const bonzoOwes = (this.total - this.totalBonzo) / 2;
 
         if(abelOwes > bonzoOwes){
-          return { abel: abelOwes.toFixed(2) };
+          return { abel: abelOwes.toFixed(0) };
         } else {
-          return { bonzo: bonzoOwes.toFixed(2) };
+          return { bonzo: bonzoOwes.toFixed(0) };
         }
 
       }
@@ -368,7 +368,8 @@ button:hover {
   text-indent: 10px;
 }
 
-#total_wrapper {
+#total_wrapper,
+#deb_wrapper {
   display: flex;
   flex-direction: column;
   width: 300px;
