@@ -78,7 +78,9 @@ export default {
       abelPercentage: 50,
       wsp_content: "Vacío",
       sortedItems: [],
-      phoneNumber: "+543413690080"
+      phoneNumber: "+543413690080",
+      abel: 0,
+      bonzo: 0
     };
   },
   mounted() {
@@ -180,7 +182,13 @@ export default {
       if (this.total !== null && this.totalBonzo !== null) {
         const abelOwes = (this.totalBonzo - this.total) / 2;
         const bonzoOwes = (this.total - this.totalBonzo) / 2;
-        return { abel: abelOwes.toFixed(2), bonzo: bonzoOwes.toFixed(2) };
+
+        if(abelOwes > bonzoOwes){
+          return { abel: abelOwes.toFixed(2) };
+        } else {
+          return { bonzo: bonzoOwes.toFixed(2) };
+        }
+
       }
       return null;
     }
