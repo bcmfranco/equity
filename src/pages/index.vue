@@ -39,8 +39,8 @@
 
       <div class="type_totals_wrappers">
         <div>
-          <p>Abel debe pagarle a Bonzo: {{ calculateDebt().abel }} pesos</p>
-          <p>Bonzo debe pagarle a Abel: {{ calculateDebt().bonzo }} pesos</p>
+          <p v-if="calculateDebt().abel > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().abel }} pesos</p>
+          <p v-if="calculateDebt().bonzo > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().bonzo }} pesos</p>
         </div>
       </div>
 
