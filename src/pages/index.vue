@@ -7,8 +7,8 @@
     <div id="content">
       <div id="input_wrapper">
         <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo ítem" />
-        <button @click="addItem(1)">fixed</button>
-        <button @click="addItem(2)">viariable</button>
+        <button @click="addItem(1)">abel</button>
+        <button @click="addItem(2)">bonzo</button>
       </div>
 
       <div id="item_list">
@@ -20,19 +20,19 @@
 
       <div id="total_wrapper">
         <div id="type_totals">
-          <div class="type_totals_wrappers" id="fixed_total">
-            <label for="total" style="font-weight: normal;">Fixed income</label>
-            <input id="totalVariable" type="text" class="total_input" :value="totalFixedPercentage" disabled />
+          <div class="type_totals_wrappers" id="abel_total">
+            <label for="total" style="font-weight: normal;">gastos de abel</label>
+            <input id="totalBonzo" type="text" class="total_input" :value="totalAbelPercentage" disabled />
           </div>
 
-          <div class="type_totals_wrappers" id="variable_total">
-            <label for="totalVariable">Variable income</label>
-            <input id="totalVariable" type="text" class="total_input" :value="totalVariablePercentage" disabled />
+          <div class="type_totals_wrappers" id="bonzo_total">
+            <label for="totalBonzo">gastos de bonzo</label>
+            <input id="totalBonzo" type="text" class="total_input" :value="totalBonzoPercentage" disabled />
           </div>
         </div>
 
         <div class="type_totals_wrappers">
-          <label for="totalVariable">Total income</label>
+          <label for="totalBonzo">gastos totales</label>
           <input type="number" class="total_input" id="max_total" v-model="totalMax" disabled />
         </div>
       </div>
@@ -65,12 +65,12 @@ export default {
     return {
       newItem: null,
       items: [],
-      itemsVariable: [],
+      itemsBonzo: [],
       total: 0,
-      totalVariable: 0,
+      totalBonzo: 0,
       totalMax: 0,
-      variablePercentage: 50,
-      fixedPercentage: 50,
+      bonzoPercentage: 50,
+      abelPercentage: 50,
       wsp_content: "Vacío",
       sortedItems: [],
       phoneNumber: "+543413690080"
@@ -84,50 +84,50 @@ export default {
       var parts = token.split("zzz");
       var allItems = parts.map(part => {
         var [id, value, type] = part.split(",");
-        return { id: parseInt(id), value: parseInt(value), type: type === "f" ? "fixed" : "variable" };
+        return { id: parseInt(id), value: parseInt(value), type: type === "f" ? "abel" : "bonzo" };
       });
 
       allItems.forEach(item => {
-        if(item.type === "fixed") {
+        if(item.type === "abel") {
           this.items.push(item);
         } else {
-          this.itemsVariable.push(item);
+          this.itemsBonzo.push(item);
         }
       });
 
-      this.fixedSum();
-      this.variableSum();
+      this.abelSum();
+      this.bonzoSum();
       this.maxSum();
 
     }
     ////////////////
   },
   methods: {
-    fixedSum(){
+    abelSum(){
       return this.total = this.items.reduce((total, item) => total + parseInt(item.value), 0);
     },
-    variableSum(){
-      return this.totalVariable = this.itemsVariable.reduce((total, item) => total + parseInt(item.value), 0);
+    bonzoSum(){
+      return this.totalBonzo = this.itemsBonzo.reduce((total, item) => total + parseInt(item.value), 0);
     },
     maxSum(){
-      const fixedTotal = this.items.reduce((total, item) => total + parseInt(item.value), 0);
-      const variableTotal = this.itemsVariable.reduce((total, item) => total + parseInt(item.value), 0);
-      return this.totalMax = fixedTotal + variableTotal;
+      const abelTotal = this.items.reduce((total, item) => total + parseInt(item.value), 0);
+      const bonzoTotal = this.itemsBonzo.reduce((total, item) => total + parseInt(item.value), 0);
+      return this.totalMax = abelTotal + bonzoTotal;
     },
     addItem(cateogry) {
 
-      if(cateogry == 1){ // Fixed
+      if(cateogry == 1){ // abel
         if (this.newItem !== null) {
-          this.items.push({ id: Date.now(), value: this.newItem, type: "fixed" });
+          this.items.push({ id: Date.now(), value: this.newItem, type: "abel" });
           this.newItem = null;
-          this.fixedSum();
+          this.abelSum();
 
         }
       } else { // Variavles
         if (this.newItem !== null) {
-          this.itemsVariable.push({ id: Date.now(), value: this.newItem, type: "variable" });
+          this.itemsBonzo.push({ id: Date.now(), value: this.newItem, type: "bonzo" });
           this.newItem = null;
-          this.variableSum();
+          this.bonzoSum();
         }
       }
 
@@ -142,25 +142,25 @@ export default {
         this.items.splice(index, 1);
       }
 
-      index = this.itemsVariable.findIndex(item => item.id === id);
+      index = this.itemsBonzo.findIndex(item => item.id === id);
       if (index !== -1) {
-        this.totalVariable -= parseInt(this.itemsVariable[index].value);
-        this.totalMax -= parseInt(this.itemsVariable[index].value);
-        this.itemsVariable.splice(index, 1);
+        this.totalBonzo -= parseInt(this.itemsBonzo[index].value);
+        this.totalMax -= parseInt(this.itemsBonzo[index].value);
+        this.itemsBonzo.splice(index, 1);
       }
      
 
-      this.fixedSum();
-      this.variableSum();
+      this.abelSum();
+      this.bonzoSum();
 
     },
     prepareWhatsAppMessage() {
       // Genero token
-      if(this.items[0] || this.itemsVariable[0]){
-        var allItems = [...this.items, ...this.itemsVariable].sort((a, b) => a.id - b.id);
+      if(this.items[0] || this.itemsBonzo[0]){
+        var allItems = [...this.items, ...this.itemsBonzo].sort((a, b) => a.id - b.id);
         
         var itemJoined = allItems.map(item => {
-          return item.id + "," + item.value + "," + (item.type === "fixed" ? "f" : "v");
+          return item.id + "," + item.value + "," + (item.type === "abel" ? "f" : "v");
         }).join("zzz");
       }
 
@@ -174,16 +174,16 @@ export default {
   },
   computed: {
     sortedItems() {
-      var allItems = [...this.items, ...this.itemsVariable];
+      var allItems = [...this.items, ...this.itemsBonzo];
       return allItems.sort((a, b) => a.id - b.id);
     },
-    totalFixedPercentage() {
-      this.fixedPercentage = Math.round(100 / this.totalMax * this.total);
-      return `${this.total} / ${this.fixedPercentage}%`;
+    totalAbelPercentage() {
+      this.abelPercentage = Math.round(100 / this.totalMax * this.total);
+      return `${this.total} / ${this.abelPercentage}%`;
     },
-    totalVariablePercentage() {
-      this.variablePercentage = Math.round(100 / this.totalMax * this.totalVariable);
-      return `${this.totalVariable} / ${this.variablePercentage}%`;
+    totalBonzoPercentage() {
+      this.bonzoPercentage = Math.round(100 / this.totalMax * this.totalBonzo);
+      return `${this.totalBonzo} / ${this.bonzoPercentage}%`;
     },
   }
 };
