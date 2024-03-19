@@ -1,5 +1,5 @@
 <template>
-  <div class="magic_bn_arrow" id="container">
+  <div class="" id="container">
     <div>
       <Brander />
     </div>

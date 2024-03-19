@@ -2,12 +2,11 @@
 
   <div id="gumcom_brander">
     <div id="logotype">
-      <div>BA</div>
+      <div>EQ</div>
     </div>
     <div id="isotype">
-      <h1>bastina</h1>
-      <h2>portfolio manager</h2>
-      <!-- <Navbarr /> -->
+      <h1>equity</h1>
+      <h2>dividí gastos sin descargar una app</h2>
     </div>
   </div>
 
