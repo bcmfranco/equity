@@ -37,6 +37,13 @@
         </div>
       </div>
 
+      <div class="type_totals_wrappers">
+        <div>
+          <p>Abel debe pagarle a Bonzo: {{ calculateDebt().abel }} pesos</p>
+          <p>Bonzo debe pagarle a Abel: {{ calculateDebt().bonzo }} pesos</p>
+        </div>
+      </div>
+
       <div id="saving_wrapper">
         <input type="text" class="" id="phone_number" v-model="phoneNumber" placeholder="+543413690080"/>
         <button @click="prepareWhatsAppMessage">Enviar datos por WhatsApp</button>
@@ -53,8 +60,6 @@
 <script>
 import Brander from '../../public/components/brander.vue';
 import Footer from '../../public/components/footer.vue';
-
-// Agregar para mandar por whatsapp
 
 export default {
   components: {
@@ -170,6 +175,14 @@ export default {
       // Paso el token como contenido de wsp
       this.wsp_content = itemJoined;
       window.location.href = 'https://api.whatsapp.com/send?phone=' + this.phone_number +'&text=' + window.location.href + "?" + encodeURIComponent(this.wsp_content);
+    },
+    calculateDebt() {
+      if (this.total !== null && this.totalBonzo !== null) {
+        const abelOwes = (this.totalBonzo - this.total) / 2;
+        const bonzoOwes = (this.total - this.totalBonzo) / 2;
+        return { abel: abelOwes.toFixed(2), bonzo: bonzoOwes.toFixed(2) };
+      }
+      return null;
     }
   },
   computed: {
@@ -184,7 +197,7 @@ export default {
     totalBonzoPercentage() {
       this.bonzoPercentage = Math.round(100 / this.totalMax * this.totalBonzo);
       return `${this.totalBonzo} / ${this.bonzoPercentage}%`;
-    },
+    }
   }
 };
 </script>
