@@ -61,6 +61,8 @@
 import Brander from '../../public/components/brander.vue';
 import Footer from '../../public/components/footer.vue';
 
+// Hay que revisar las cosas que se están mandando por wsp
+
 export default {
   components: {
     Brander,
@@ -200,11 +202,11 @@ export default {
     },
     totalAbelPercentage() {
       this.abelPercentage = Math.round(100 / this.totalMax * this.total);
-      return `${this.total} / ${this.abelPercentage}%`;
+      return `${this.total}`;
     },
     totalBonzoPercentage() {
       this.bonzoPercentage = Math.round(100 / this.totalMax * this.totalBonzo);
-      return `${this.totalBonzo} / ${this.bonzoPercentage}%`;
+      return `${this.totalBonzo}`;
     }
   }
 };
