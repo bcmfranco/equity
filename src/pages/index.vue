@@ -21,29 +21,32 @@
         </div>
       </div>
 
-      <div id="total_wrapper">
-        <div id="type_totals">
-          <div class="type_totals_wrappers" id="abel_total">
-            <label for="total" style="font-weight: normal;">gastos de abel</label>
-            <input id="totalBonzo" type="text" class="total_input" :value="totalAbelPercentage" disabled />
+      <div id="sentence">
+        <div id="total_wrapper">
+          <div id="type_totals">
+            <div class="type_totals_wrappers" id="abel_total">
+              <label for="total" style="font-weight: normal;">gastos de abel</label>
+              <input id="totalBonzo" type="text" class="total_input" :value="totalAbelPercentage" disabled />
+            </div>
+
+            <div class="type_totals_wrappers" id="bonzo_total">
+              <label for="totalBonzo">gastos de bonzo</label>
+              <input id="totalBonzo" type="text" class="total_input" :value="totalBonzoPercentage" disabled />
+            </div>
           </div>
 
-          <div class="type_totals_wrappers" id="bonzo_total">
-            <label for="totalBonzo">gastos de bonzo</label>
-            <input id="totalBonzo" type="text" class="total_input" :value="totalBonzoPercentage" disabled />
+          <div class="type_totals_wrappers">
+            <label for="totalBonzo">gasto total</label>
+            <input type="number" class="total_input" id="max_total" v-model="totalMax" disabled />
           </div>
         </div>
 
-        <div class="type_totals_wrappers">
-          <label for="totalBonzo">gastos totales</label>
-          <input type="number" class="total_input" id="max_total" v-model="totalMax" disabled />
+        <div id="deb_wrapper">
+            <p v-if="calculateDebt().abel > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().abel }}</p>
+            <p v-if="calculateDebt().bonzo > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().bonzo }}</p>
         </div>
       </div>
 
-      <div id="deb_wrapper">
-          <p v-if="calculateDebt().abel > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().abel }}</p>
-          <p v-if="calculateDebt().bonzo > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().bonzo }}</p>
-      </div>
 
 
 
@@ -252,6 +255,8 @@ export default {
   height: 40px;
   padding: 0 10px;
   font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
 }
 
 #input_wrapper button {
@@ -276,6 +281,12 @@ export default {
   color: #333;
 }
 
+#item_list button {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+}
+
 .item {
   display: flex;
   justify-content: space-between;
@@ -285,14 +296,27 @@ export default {
   border-bottom: 1px solid #ccc;
 }
 
-#total_wrapper {
-  margin-top: 20px;
-  padding: 20px;
+#sentence{
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  margin: 10px 0px;
+  width: 100%;
   color: #333;
+  padding: 10px;
 }
+
+#sentence #total_wrapper {
+  margin-top: 20px;
+}
+
+#total_wrapper #type_totals{
+  border-bottom: 1px solid lightgray;
+}
+
+#sentence #deb_wrapper {
+}
+
 
 .total_input {
   width: 100px;
@@ -306,7 +330,6 @@ export default {
 #type_totals {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .type_totals_wrappers {
