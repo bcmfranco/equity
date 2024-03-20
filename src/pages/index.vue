@@ -6,7 +6,7 @@
 
     <div id="content">
       <div id="input_wrapper">
-        <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo ítem" />
+        <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo gasto" />
         <button @click="addItem(1)">abel</button>
         <button @click="addItem(2)">bonzo</button>
       </div>
@@ -273,44 +273,41 @@ export default {
   margin-top: 20px;
 }
 
+button{
+  border: none;
+}
+
 #input_wrapper {
-  display: grid;
-  grid-template-columns: 50% 25% 25%;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
   gap: 5px;
   width: 300px;
   margin-bottom: 20px;
   padding: 10px 15px;
   border-radius: 10px;
   background-color: #1e4c7d;
+  align-items: center;
 }
 
-#input_wrapper input{
+#input_wrapper input,
+#input_wrapper button{
   background-color: inherit;
-  border: none;
-  border-bottom: 1px dashed #e4e4e4;
-  height: 34px;
+  border: 1px solid #e4e4e4;
+  height: 30px;
   color: #e4e4e4;
+  text-indent: 5px;
+  width: 250px;
+  text-align: left;
+}
+
+#input_wrapper button{
+  width: 255px;
 }
 
 #input_wrapper #add_item::placeholder{
   color: #e4e4e4;
 }
 
-#input_wrapper #add_item{
-  width: 100px
-}
-
-button,
-a {
-  padding: 10px 20px;
-  border: none;
-  border-bottom: 1px solid #e4e4e4;
-  background-color: inherit;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
 #saving_wrapper{
   display: flex;
