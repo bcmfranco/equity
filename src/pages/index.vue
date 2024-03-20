@@ -42,15 +42,15 @@
         </div>
 
         <div id="deb_wrapper">
-            <p v-if="calculateDebt().abel > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().abel }}</p>
-            <p v-if="calculateDebt().bonzo > 0">Abel debe pagarle a Bonzo: {{ calculateDebt().bonzo }}</p>
+            <p v-if="calculateDebt().abel > 0">de Abel a Bonzo: {{ calculateDebt().abel }}</p>
+            <p v-if="calculateDebt().bonzo > 0">de Bonzo a Abel: {{ calculateDebt().bonzo }}</p>
         </div>
       </div>
 
 
 
 
-      <div id="saving_wrapper">
+      <div id="saving">
         <input type="text" class="" id="phone_number" v-model="phoneNumber" placeholder="+543413690080"/>
         <button @click="prepareWhatsAppMessage">Enviar datos por WhatsApp</button>
       </div>      
@@ -343,6 +343,35 @@ export default {
 .type_totals_wrappers .total_input{
   border: none;
   background-color: inherit;
+}
+
+#saving{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 10px 0px;
+  width: 100%;
+  color: #333;
+  padding: 10px 20px;
+  width: 300px;
+}
+
+#saving input {
+  height: 40px;
+  padding: 0 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  color: #333;
+}
+
+#saving button {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
 }
 
 @media (max-width: 480px) {
