@@ -5,16 +5,19 @@
     </div>
 
     <div id="content">
-      <div id="input_wrapper">
-        <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo gasto" />
-        <button @click="addItem(1)">abel</button>
-        <button @click="addItem(2)">bonzo</button>
-      </div>
 
-      <div id="item_list">
-        <div v-for="item in sortedItems" :key="item.id" class="item">
-          <span>{{ item.value }} {{ item.type }}</span>
-          <button @click="deleteItem(item.id)">x</button>
+      <div id="list">
+        <div id="input_wrapper">
+          <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo gasto" />
+          <button @click="addItem(1)">abel</button>
+          <button @click="addItem(2)">bonzo</button>
+        </div>
+
+        <div id="item_list">
+          <div v-for="item in sortedItems" :key="item.id" class="item">
+            <span>{{ item.value }} {{ item.type }}</span>
+            <button @click="deleteItem(item.id)">x</button>
+          </div>
         </div>
       </div>
 
@@ -230,22 +233,24 @@ export default {
   align-items: center;
 }
 
+#content #list{
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
 #input_wrapper {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 300px;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
 }
 
 #input_wrapper input {
   height: 40px;
   padding: 0 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   font-size: 16px;
 }
 
@@ -268,9 +273,6 @@ export default {
   width: 300px;
   margin-top: 20px;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
   color: #333;
 }
 
@@ -315,6 +317,11 @@ export default {
   font-size: 16px;
 }
 
+.type_totals_wrappers .total_input{
+  border: none;
+  background-color: inherit;
+}
+
 @media (max-width: 480px) {
   #input_wrapper {
     width: 90%;
@@ -328,8 +335,6 @@ export default {
     width: 90%;
   }
 }
-</style>
-
 
 
 @media (max-width: 480px) {
