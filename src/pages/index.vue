@@ -213,203 +213,122 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 #container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-items: center;
-  height: 100%;
-  font-family: "Montserrat", sans-serif;
   height: 100vh;
-  overflow: hidden;
-}
-
-.magic_bg_snow{
-  --s: 45px;
-  --c1: #dedede;
-  --c2: #4da5ed;
-  --_g: radial-gradient(calc(var(--s)/2),var(--c1) 97%,#0000);
-  background:
-    var(--_g),var(--_g) calc(2*var(--s)) calc(2*var(--s)),
-    repeating-conic-gradient(from 45deg,#0000 0 25%,var(--c2) 0 50%) calc(-.707*var(--s)) calc(-.707*var(--s)),
-    repeating-linear-gradient(135deg,var(--c1) calc(var(--s)/-2) calc(var(--s)/2),var(--c2) 0 calc(2.328*var(--s)));
-  background-size: calc(4*var(--s)) calc(4*var(--s));
-}
-
-.magic_bn_arrow{
-  --s: 150px; /* control the size */
-  --c:#4da5ed;
-  
-  --l:var(--c) 20%,#0000 0;
-  --g:35%,#8fbee5 0 45%,var(--c) 0;
-  background:
-    linear-gradient(45deg,var(--l) 45%,var(--c) 0 70%,#0000 0),
-    linear-gradient(-45deg,var(--l) var(--g) 70%,#0000 0),
-    linear-gradient(45deg,var(--c) var(--g));
-  background-size: var(--s) var(--s);
-}
-
-.magic_bn_floor{
-  --s: 200px; /* control the size */
-  --c: #fff; /* first color */
-  
-  --_g: #0000 8%,var(--c) 0 17%,#0000 0 58%;
-  background: 
-    linear-gradient(135deg,#0000 20.5%,var(--c) 0 29.5%,#0000 0) 0 calc(var(--s)/4),
-    linear-gradient( 45deg,var(--_g)) calc(var(--s)/2) 0,
-    linear-gradient(135deg,var(--_g),var(--c) 0 67%,#0000 0),        
-    linear-gradient( 45deg,var(--_g),var(--c) 0 67%,#0000 0 83%,var(--c) 0 92%,#0000 0),
-    #1095c1; /* second color */
-  background-size: var(--s) var(--s);
+  font-family: "Montserrat", sans-serif;
+  background-color: #f5f5f5;
 }
 
 #content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-}
-
-button{
-  border: none;
 }
 
 #input_wrapper {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   width: 300px;
-  margin-bottom: 20px;
-  padding: 10px 15px;
+  padding: 20px;
   border-radius: 10px;
-  background-color: #1e4c7d;
-  align-items: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-#input_wrapper input,
-#input_wrapper button{
-  background-color: inherit;
-  border: 1px solid #e4e4e4;
-  height: 30px;
-  color: #e4e4e4;
-  text-indent: 5px;
-  width: 250px;
-  text-align: left;
-}
-
-#input_wrapper button{
-  width: 255px;
-}
-
-#input_wrapper #add_item::placeholder{
-  color: #e4e4e4;
-}
-
-
-#saving_wrapper{
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin: 10px 0px;
-  border-radius: 10px;
-  background-color: #ae2f2f;
-  padding: 10px 15px;
-}
-
-#saving_wrapper #phone_number{
-  height: 30px;
-  border: none;
-  border-bottom: 1px dashed #e4e4e4;
-  background-color: inherit;
-  text-align: center;
+#input_wrapper input {
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 16px;
-  color: #e4e4e4;
 }
 
-#saving_wrapper button{
-  margin: 10px 0px;
+#input_wrapper button {
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-button:hover {
+#input_wrapper button:hover {
   background-color: #0056b3;
 }
 
 #item_list {
   width: 300px;
-  min-height: 300px;
+  margin-top: 20px;
+  padding: 20px;
   border-radius: 10px;
-  padding: 10px 15px;
-  background-color: #1e4c7d;
-  color: #e4e4e4;
-}
-
-#item_list button{
-  margin: 10px 0px;
-  padding: 10px 20px;
-  border-bottom: 1px solid #e4e4e4;
-  border-radius: 0px;
-  color: #e4e4e4;
-  background-color: inherit;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  color: #333;
 }
 
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  height: 36px;
-  padding: 3px 0px;
-  text-indent: 10px;
+  height: 40px;
+  padding: 0 10px;
+  border-bottom: 1px solid #ccc;
 }
 
-#total_wrapper,
-#deb_wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
+#total_wrapper {
   margin-top: 20px;
-  padding: 10px 15px;
+  padding: 20px;
   border-radius: 10px;
-  background-color: #ae2f2f;
-  font-size: 16px;
-  color: #e4e4e4;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  color: #333;
 }
 
-#total_wrapper .total_input{
+.total_input {
   width: 100px;
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   font-size: 16px;
 }
 
-#total_wrapper #type_totals{
+#type_totals {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 
-#total_wrapper .type_totals_wrappers{
+.type_totals_wrappers {
   display: grid;
-  grid-template-columns: 50% 50%;
-  line-height: 22px;
-  text-indent: 5px;
-  font-weight: unset;
-  font-family: "Montserrat", sans-serif;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  line-height: 40px;
+  font-size: 16px;
 }
 
-.type_totals_wrappers input{
-  border: none;
-  background-color: inherit;
-  font-family: inherit;
-  color: #e4e4e4;
+@media (max-width: 480px) {
+  #input_wrapper {
+    width: 90%;
+  }
+  
+  #item_list {
+    width: 90%;
+  }
+  
+  #total_wrapper {
+    width: 90%;
+  }
 }
-
-.type_totals_wrappers #max_total{
-  width: 266px;
-}
+</style>
 
 
 
