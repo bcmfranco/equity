@@ -292,7 +292,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  padding: 0 10px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -303,20 +302,18 @@ export default {
   margin: 10px 0px;
   width: 100%;
   color: #333;
-  padding: 10px;
+  padding: 10px 20px;
+  width: 300px;
 }
 
 #sentence #total_wrapper {
   margin-top: 20px;
+  border-bottom: 1px solid #ccc;
 }
 
 #total_wrapper #type_totals{
   border-bottom: 1px solid lightgray;
 }
-
-#sentence #deb_wrapper {
-}
-
 
 .total_input {
   width: 100px;
@@ -346,25 +343,12 @@ export default {
 }
 
 @media (max-width: 480px) {
-  #input_wrapper {
-    width: 90%;
-  }
-  
-  #item_list {
-    width: 90%;
-  }
-  
-  #total_wrapper {
-    width: 90%;
-  }
-}
 
-
-@media (max-width: 480px) {
   #container {
     display: flex;
     flex-direction: column;
     margin-top: unset;
   }
+
 }
 </style>
