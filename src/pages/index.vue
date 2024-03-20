@@ -1,6 +1,6 @@
 <template>
   <div class="" id="container">
-    <div>
+    <div style="width: 50%;">
       <Brander />
     </div>
 
