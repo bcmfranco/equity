@@ -268,6 +268,8 @@ export default {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+  text-align: left;
+  text-indent: 5px;
 }
 
 #input_wrapper button:hover {
@@ -281,18 +283,19 @@ export default {
   color: #333;
 }
 
-#item_list button {
-  border: none;
-  background-color: inherit;
-  color: inherit;
-}
-
-.item {
+#item_list .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   border-bottom: 1px solid #ccc;
+  color: #333;
+}
+
+#item_list button {
+  border: none;
+  background-color: inherit;
+  font-size: 14px;
 }
 
 #sentence{
@@ -317,7 +320,7 @@ export default {
 
 .total_input {
   width: 100px;
-  height: 40px;
+  height: 30px;
   padding: 0 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -333,7 +336,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  line-height: 40px;
+  line-height: 30px;
   font-size: 16px;
 }
 
