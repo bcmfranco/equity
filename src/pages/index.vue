@@ -1,6 +1,6 @@
 <template>
   <div class="" id="container">
-    <div style="width: 50%;">
+    <div id="brander">
       <Brander />
     </div>
 
@@ -230,6 +230,10 @@ export default {
   background-color: #f5f5f5;
 }
 
+#container #brander{
+  width: 50%;
+}
+
 #content {
   display: flex;
   flex-direction: column;
@@ -379,8 +383,15 @@ export default {
   #container {
     display: flex;
     flex-direction: column;
-    margin-top: unset;
+    margin-top: 0;
+    height: 100vh;
   }
 
+  #container #brander {
+    width: 300px;
+    position: absolute;
+    top: 0px;
+  }
 }
+
 </style>
