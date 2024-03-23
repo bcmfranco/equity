@@ -295,7 +295,7 @@ export default {
   },
   computed: {
     sortedItems() {
-      var allItems = [...this.items, ...this.itemsBonzo];
+      var allItems = [...this.items, ...this.itemsBonzo, ...this.itemsCarlos, ...this.itemsDaniel, ...this.itemsEnzo];
       return allItems.sort((a, b) => a.id - b.id);
     },
     totalAbelPercentage() {
