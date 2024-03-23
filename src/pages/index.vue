@@ -60,14 +60,15 @@
           </div>
         </div>
 
-        <!-- <div id="deb_wrapper">
-            <p v-if="calculateDebt().abel > 0">de Abel a Bonzo: {{ calculateDebt().abel }}</p>
-            <p v-if="calculateDebt().bonzo > 0">de Bonzo a Abel: {{ calculateDebt().bonzo }}</p>
-        </div> -->
+        <div id="deb_wrapper">
+          <p v-if="calculateDebt().abel > 0">de Abel a Bonzo: {{ calculateDebt().abel }}</p>
+          <p v-if="calculateDebt().bonzo > 0">de Bonzo a Abel: {{ calculateDebt().bonzo }}</p>
+          <p v-if="calculateDebt().carlos > 0">de Carlos a Daniel: {{ calculateDebt().carlos }}</p>
+          <p v-if="calculateDebt().daniel > 0">de Daniel a Enzo: {{ calculateDebt().daniel }}</p>
+          <p v-if="calculateDebt().enzo > 0">de Enzo a Abel: {{ calculateDebt().enzo }}</p>
+        </div>
+
       </div>
-
-
-
 
       <!-- <div id="saving">
         <input type="text" class="" id="phone_number" v-model="phoneNumber" placeholder="+543413690080"/>
@@ -181,8 +182,6 @@ export default {
     },
     addItem(cateogry) {
 
-      console.log("cateogry", cateogry);
-
       if(cateogry == 1){ // abel
         if (this.newItem !== null) {
           this.items.push({ id: Date.now(), value: this.newItem, type: "abel" });
@@ -279,16 +278,42 @@ export default {
       window.location.href = 'https://api.whatsapp.com/send?phone=' + this.phone_number +'&text=' + window.location.href + "?" + encodeURIComponent(this.wsp_content);
     },
     calculateDebt() {
-      if (this.total !== null && this.totalBonzo !== null) {
-        const abelOwes = (this.totalBonzo - this.total) / 2;
-        const bonzoOwes = (this.total - this.totalBonzo) / 2;
+      if (this.total !== null && this.totalBonzo !== null && this.totalCarlos !== null && this.totalDaniel !== null && this.totalEnzo !== null) {
+        const totalGasto = this.total + this.totalBonzo + this.totalCarlos + this.totalDaniel + this.totalEnzo;
+        const pagoPorPersona = totalGasto / 5;
 
-        if(abelOwes > bonzoOwes){
-          return { abel: abelOwes.toFixed(0) };
+        let debt = {};
+        if (this.total < pagoPorPersona) {
+          debt.abel = (pagoPorPersona - this.total).toFixed(0);
         } else {
-          return { bonzo: bonzoOwes.toFixed(0) };
+          debt.bonzo = (this.total - pagoPorPersona).toFixed(0);
         }
 
+        if (this.totalBonzo < pagoPorPersona) {
+          debt.bonzo = (pagoPorPersona - this.totalBonzo).toFixed(0);
+        } else {
+          debt.carlos = (this.totalBonzo - pagoPorPersona).toFixed(0);
+        }
+
+        if (this.totalCarlos < pagoPorPersona) {
+          debt.carlos = (pagoPorPersona - this.totalCarlos).toFixed(0);
+        } else {
+          debt.daniel = (this.totalCarlos - pagoPorPersona).toFixed(0);
+        }
+
+        if (this.totalDaniel < pagoPorPersona) {
+          debt.daniel = (pagoPorPersona - this.totalDaniel).toFixed(0);
+        } else {
+          debt.enzo = (this.totalDaniel - pagoPorPersona).toFixed(0);
+        }
+
+        if (this.totalEnzo < pagoPorPersona) {
+          debt.enzo = (pagoPorPersona - this.totalEnzo).toFixed(0);
+        } else {
+          debt.abel = (this.totalEnzo - pagoPorPersona).toFixed(0);
+        }
+
+        return debt;
       }
       return null;
     }
