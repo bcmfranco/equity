@@ -11,6 +11,10 @@
           <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo gasto" />
           <button @click="addItem(1)">abel</button>
           <button @click="addItem(2)">bonzo</button>
+          <button @click="addItem(3)">carlos</button>
+          <button @click="addItem(4)">daniel</button>
+          <button @click="addItem(5)">enzo</button>
+
         </div>
 
         <div id="item_list">
@@ -33,6 +37,21 @@
               <label for="totalBonzo">gastos de bonzo</label>
               <input id="totalBonzo" type="text" class="total_input" :value="totalBonzoPercentage" disabled />
             </div>
+
+            <div class="type_totals_wrappers" id="carlos_total">
+              <label for="totalCarlos">gastos de carlos</label>
+              <input id="totalCarlos" type="text" class="total_input" :value="totalCarlosPercentage" disabled />
+            </div>
+
+            <div class="type_totals_wrappers" id="daniel_total">
+              <label for="totalDaniel">gastos de daniel</label>
+              <input id="totalDaniel" type="text" class="total_input" :value="totalDanielPercentage" disabled />
+            </div>
+
+            <div class="type_totals_wrappers" id="enzo_total">
+              <label for="totalEnzo">gastos de enzo</label>
+              <input id="totalEnzo" type="text" class="total_input" :value="totalEnzoPercentage" disabled />
+            </div>
           </div>
 
           <div class="type_totals_wrappers">
@@ -41,19 +60,19 @@
           </div>
         </div>
 
-        <div id="deb_wrapper">
+        <!-- <div id="deb_wrapper">
             <p v-if="calculateDebt().abel > 0">de Abel a Bonzo: {{ calculateDebt().abel }}</p>
             <p v-if="calculateDebt().bonzo > 0">de Bonzo a Abel: {{ calculateDebt().bonzo }}</p>
-        </div>
+        </div> -->
       </div>
 
 
 
 
-      <div id="saving">
+      <!-- <div id="saving">
         <input type="text" class="" id="phone_number" v-model="phoneNumber" placeholder="+543413690080"/>
         <button @click="prepareWhatsAppMessage">Enviar datos por WhatsApp</button>
-      </div>      
+      </div>       -->
 
     </div>
 
@@ -79,11 +98,20 @@ export default {
       newItem: null,
       items: [],
       itemsBonzo: [],
+      itemsCarlos: [],
+      itemsDaniel: [],
+      itemsEnzo: [],
       total: 0,
       totalBonzo: 0,
+      totalCarlos: 0,
+      totalDaniel: 0,
+      totalEnzo: 0,
       totalMax: 0,
-      bonzoPercentage: 50,
-      abelPercentage: 50,
+      abelPercentage: 20,
+      bonzoPercentage: 20,
+      carlosPercentage: 20,
+      danielPercentage: 20,
+      enzoPercentage: 20,
       wsp_content: "Vacío",
       sortedItems: [],
       phoneNumber: "+543413690080",
@@ -105,13 +133,22 @@ export default {
       allItems.forEach(item => {
         if(item.type === "abel") {
           this.items.push(item);
-        } else {
+        } else if (item.type === "bonzo") {
           this.itemsBonzo.push(item);
+        } else if (item.type === "carlos") {
+          this.itemsCarlos.push(item);
+        } else if (item.type === "daniel") {
+          this.itemsDaniel.push(item);
+        } else {
+          this.itemsEnzo.push(item);
         }
       });
 
       this.abelSum();
       this.bonzoSum();
+      this.carlosSum();
+      this.danielSum();
+      this.enzoSum();
       this.maxSum();
 
     }
@@ -124,12 +161,27 @@ export default {
     bonzoSum(){
       return this.totalBonzo = this.itemsBonzo.reduce((total, item) => total + parseInt(item.value), 0);
     },
+    carlosSum(){
+      return this.totalBonzo = this.itemsCarlos.reduce((total, item) => total + parseInt(item.value), 0);
+    },
+    danielSum(){
+      return this.totalBonzo = this.itemsDaniel.reduce((total, item) => total + parseInt(item.value), 0);
+    },
+    enzoSum(){
+      return this.totalBonzo = this.itemsEnzo.reduce((total, item) => total + parseInt(item.value), 0);
+    },
     maxSum(){
       const abelTotal = this.items.reduce((total, item) => total + parseInt(item.value), 0);
       const bonzoTotal = this.itemsBonzo.reduce((total, item) => total + parseInt(item.value), 0);
-      return this.totalMax = abelTotal + bonzoTotal;
+      const carlosTotal = this.itemsCarlos.reduce((total, item) => total + parseInt(item.value), 0);
+      const danielTotal = this.itemsDaniel.reduce((total, item) => total + parseInt(item.value), 0);
+      const enzoTotal = this.itemsEnzo.reduce((total, item) => total + parseInt(item.value), 0);
+
+      return this.totalMax = abelTotal + bonzoTotal + carlosTotal + danielTotal + enzoTotal;
     },
     addItem(cateogry) {
+
+      console.log("cateogry", cateogry);
 
       if(cateogry == 1){ // abel
         if (this.newItem !== null) {
@@ -138,11 +190,29 @@ export default {
           this.abelSum();
 
         }
-      } else { // Variavles
+      } else if (cateogry == 2) { // bonzo
         if (this.newItem !== null) {
           this.itemsBonzo.push({ id: Date.now(), value: this.newItem, type: "bonzo" });
           this.newItem = null;
           this.bonzoSum();
+        }
+      } else if (cateogry == 3) { // carlos
+        if (this.newItem !== null) {
+          this.itemsCarlos.push({ id: Date.now(), value: this.newItem, type: "carlos" });
+          this.newItem = null;
+          this.carlosSum();
+        }
+      } else if (cateogry == 4) { // daniel
+        if (this.newItem !== null) {
+          this.itemsDaniel.push({ id: Date.now(), value: this.newItem, type: "daniel" });
+          this.newItem = null;
+          this.danielSum();
+        }
+      } else { // enzo
+        if (this.newItem !== null) {
+          this.itemsEnzo.push({ id: Date.now(), value: this.newItem, type: "enzo" });
+          this.newItem = null;
+          this.enzoSum();
         }
       }
 
@@ -163,11 +233,33 @@ export default {
         this.totalMax -= parseInt(this.itemsBonzo[index].value);
         this.itemsBonzo.splice(index, 1);
       }
-     
 
+      index = this.itemsCarlos.findIndex(item => item.id === id);
+      if (index !== -1) {
+        this.totalCarlos -= parseInt(this.itemsCarlos[index].value);
+        this.totalMax -= parseInt(this.itemsCarlos[index].value);
+        this.itemsCarlos.splice(index, 1);
+      }
+
+      index = this.itemsDaniel.findIndex(item => item.id === id);
+      if (index !== -1) {
+        this.totalDaniel -= parseInt(this.itemsDaniel[index].value);
+        this.totalMax -= parseInt(this.itemsDaniel[index].value);
+        this.itemsDaniel.splice(index, 1);
+      }
+
+      index = this.itemsEnzo.findIndex(item => item.id === id);
+      if (index !== -1) {
+        this.totalBonzo -= parseInt(this.itemsEnzo[index].value);
+        this.totalMax -= parseInt(this.itemsEnzo[index].value);
+        this.itemsEnzo.splice(index, 1);
+      }
+     
       this.abelSum();
       this.bonzoSum();
-
+      this.carlosSum();
+      this.danielSum();
+      this.enzoSum();
     },
     prepareWhatsAppMessage() {
       // Genero token
@@ -213,6 +305,18 @@ export default {
     totalBonzoPercentage() {
       this.bonzoPercentage = Math.round(100 / this.totalMax * this.totalBonzo);
       return `${this.totalBonzo}`;
+    },
+    totalCarlosPercentage() {
+      this.carlosPercentage = Math.round(100 / this.totalMax * this.totalCarlos);
+      return `${this.totalCarlos}`;
+    },
+    totalDanielPercentage() {
+      this.danielPercentage = Math.round(100 / this.totalMax * this.totalDaniel);
+      return `${this.totalDaniel}`;
+    },
+    totalEnzoPercentage() {
+      this.enzoPercentage = Math.round(100 / this.totalMax * this.totalEnzo);
+      return `${this.totalEnzo}`;
     }
   }
 };
