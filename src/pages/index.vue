@@ -9,13 +9,10 @@
       <div id="list">
         <div id="input_wrapper">
           <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo gasto" />
-          <button @click="addItem(1)">abel</button>
-          <button @click="addItem(2)">bonzo</button>
-          <button @click="addItem(3)">carlos</button>
-          <button @click="addItem(4)">daniel</button>
-          <button @click="addItem(5)">enzo</button>
-
+          <input type="text" id="responsable" v-model.text="responsable" placeholder="Responsable" />
+          <button @click="addItem2(newItem, responsable)">Agregar</button>
         </div>
+
 
         <div id="item_list">
           <div v-for="item in sortedItems" :key="item.id" class="item">
@@ -117,7 +114,11 @@ export default {
       sortedItems: [],
       phoneNumber: "+543413690080",
       abel: 0,
-      bonzo: 0
+      bonzo: 0,
+      newItemValue: null,
+      newItemResponsible: null,
+      newResposibles: {"player1": 0, "player2": 0, "player3": 0, "player2": 0, "player5": 0}
+
     };
   },
   mounted() {
@@ -180,6 +181,17 @@ export default {
 
       return this.totalMax = abelTotal + bonzoTotal + carlosTotal + danielTotal + enzoTotal;
     },
+    addItem2(newItem, responsible) {
+
+      console.log("responsible", responsible);
+
+      var newMember = {};
+      newMember[responsible] = newItem;
+
+      console.log("newMember", newMember);
+
+    },
+
     addItem(cateogry) {
 
       if(cateogry == 1){ // abel
