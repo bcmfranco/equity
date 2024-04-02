@@ -117,8 +117,8 @@ export default {
       bonzo: 0,
       newItemValue: null,
       newItemResponsible: null,
-      newResposibles: {"player1": ["abel", 0], "player2": ["bonzo", 0], "player3": ["carlos", 0], "player4": ["daniel", 0], "player5": ["enzo", 0]}
-
+      newResposibles: {"player1": ["abel", 0], "player2": ["bonzo", 0], "player3": ["carlos", 0], "player4": ["daniel", 0], "player5": ["enzo", 0]},
+      lastPlayerEdited: 0
     };
   },
   mounted() {
@@ -183,12 +183,8 @@ export default {
     },
     addItem2(newItem, responsible) {
 
-      console.log("before", this.newResposibles["player2"]);
-
-      // Falta agregar un nuevo miembro
-      // para esto es necesario llevar un conteo de los nuevos meimbros
-      // para saber qué player editar
-
+      // Hay que ponerle un condicional para que no admita más de 5 players
+      // Hay que probarlo con varios players
 
       var existingMember = false;
 
@@ -201,13 +197,15 @@ export default {
         }
       }
 
-      if(existingMember){
+      if(existingMember){ // Player existente
         this.newResposibles[existingMemberKey] = [responsible, newItem];
-      } else {
-        // Reemplazar miembro classic por nuevo miembro
-      }
+      } else { // Nuevo player
 
-      console.log("after", this.newResposibles["player2"]);
+        this.lastPlayerEdited ++;
+        var playerToEdit = "player"+this.lastPlayerEdited.toString();
+        this.newResposibles[playerToEdit] = [responsible, newItem];
+
+      }
 
     },
 
