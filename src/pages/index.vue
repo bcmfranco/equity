@@ -26,7 +26,7 @@
         <div id="total_wrapper">
           <div id="type_totals">
             <div class="type_totals_wrappers" id="abel_total">
-              <label for="total" style="font-weight: normal;">gastos de abel</label>
+              <label for="total" style="font-weight: normal;">gastos de {{ this.newResposibles["player1"][0] }}</label>
               <input id="totalBonzo" type="text" class="total_input" :value='this.newResposibles["player1"][1]' disabled />
             </div>
 
