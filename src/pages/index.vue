@@ -183,7 +183,6 @@ export default {
     },
     addItem2(newItem, responsible) {
 
-      // Hay que ponerle un condicional para que no admita más de 5 players
       // Hay que probarlo con varios players
 
       var existingMember = false;
@@ -201,10 +200,13 @@ export default {
         this.newResposibles[existingMemberKey] = [responsible, newItem];
       } else { // Nuevo player
 
-        this.lastPlayerEdited ++;
-        var playerToEdit = "player"+this.lastPlayerEdited.toString();
-        this.newResposibles[playerToEdit] = [responsible, newItem];
+        if(lastPlayerEdited < 6){
 
+          this.lastPlayerEdited ++;
+          var playerToEdit = "player"+this.lastPlayerEdited.toString();
+          this.newResposibles[playerToEdit] = [responsible, newItem];
+
+        }
       }
 
     },
