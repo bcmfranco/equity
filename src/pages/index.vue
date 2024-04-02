@@ -27,7 +27,7 @@
           <div id="type_totals">
             <div class="type_totals_wrappers" id="abel_total">
               <label for="total" style="font-weight: normal;">gastos de abel</label>
-              <input id="totalBonzo" type="text" class="total_input" :value="totalBonzoPercentage" disabled />
+              <input id="totalBonzo" type="text" class="total_input" :value='this.newResposibles["player1"][1]' disabled />
             </div>
 
             <div class="type_totals_wrappers" id="bonzo_total">
@@ -205,6 +205,8 @@ export default {
           var playerToEdit = "player"+this.lastPlayerEdited.toString();
           this.newResposibles[playerToEdit] = [responsible, newItem];
         }
+
+        // Hay que hacer que estos valores se mapeen de forma reactiva
 
         console.log(this.newResposibles["player1"]);
       }
