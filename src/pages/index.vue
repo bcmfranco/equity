@@ -117,7 +117,7 @@ export default {
       bonzo: 0,
       newItemValue: null,
       newItemResponsible: null,
-      newResposibles: {"player1": 0, "player2": 0, "player3": 0, "player2": 0, "player5": 0}
+      newResposibles: {"player1": ["abel", 0], "player2": ["bonzo", 0], "player3": ["carlos", 0], "player4": ["daniel", 0], "player5": ["enzo", 0]}
 
     };
   },
@@ -183,12 +183,25 @@ export default {
     },
     addItem2(newItem, responsible) {
 
-      console.log("responsible", responsible);
+      // Estamos acá
 
-      var newMember = {};
-      newMember[responsible] = newItem;
+      // this.newResposibles["player1"] = [responsible, newItem];
 
-      console.log("newMember", newMember);
+      var existingMember = false;
+
+      for (let key in this.newResposibles) {
+        if (this.newResposibles.hasOwnProperty(key)) {
+          if (this.newResposibles[key][0] === responsible) { 
+            existingMember = true;
+          }
+        }
+      }
+
+      if(existingMember){
+        // Aumentar value a un miembro existente
+      } else {
+        // Reemplazar miembro classic por nuevo miembro
+      }
 
     },
 
