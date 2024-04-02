@@ -183,9 +183,12 @@ export default {
     },
     addItem2(newItem, responsible) {
 
-      // Estamos acá
+      console.log("before", this.newResposibles["player2"]);
 
-      // this.newResposibles["player1"] = [responsible, newItem];
+      // Falta agregar un nuevo miembro
+      // para esto es necesario llevar un conteo de los nuevos meimbros
+      // para saber qué player editar
+
 
       var existingMember = false;
 
@@ -193,15 +196,18 @@ export default {
         if (this.newResposibles.hasOwnProperty(key)) {
           if (this.newResposibles[key][0] === responsible) { 
             existingMember = true;
+            var existingMemberKey = key;
           }
         }
       }
 
       if(existingMember){
-        // Aumentar value a un miembro existente
+        this.newResposibles[existingMemberKey] = [responsible, newItem];
       } else {
         // Reemplazar miembro classic por nuevo miembro
       }
+
+      console.log("after", this.newResposibles["player2"]);
 
     },
 
