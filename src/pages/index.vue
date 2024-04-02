@@ -183,8 +183,6 @@ export default {
     },
     addItem2(newItem, responsible) {
 
-      // Hay que probarlo con varios players
-
       var existingMember = false;
 
       for (let key in this.newResposibles) {
@@ -205,11 +203,9 @@ export default {
           var playerToEdit = "player"+this.lastPlayerEdited.toString();
           this.newResposibles[playerToEdit] = [responsible, newItem];
         }
-
-        // Hay que hacer que estos valores se mapeen de forma reactiva
-
-        console.log(this.newResposibles["player1"]);
       }
+
+      // Hay que hacer el gasto total vaya sumando de forma reactiva
 
     },
 
