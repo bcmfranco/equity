@@ -27,7 +27,7 @@
           <div id="type_totals">
             <div class="type_totals_wrappers" id="abel_total">
               <label for="total" style="font-weight: normal;">gastos de abel</label>
-              <input id="totalBonzo" type="text" class="total_input" :value="totalAbelPercentage" disabled />
+              <input id="totalBonzo" type="text" class="total_input" :value="totalBonzoPercentage" disabled />
             </div>
 
             <div class="type_totals_wrappers" id="bonzo_total">
@@ -200,13 +200,13 @@ export default {
         this.newResposibles[existingMemberKey] = [responsible, newItem];
       } else { // Nuevo player
 
-        if(lastPlayerEdited < 6){
-
+        if(this.lastPlayerEdited < 6){
           this.lastPlayerEdited ++;
           var playerToEdit = "player"+this.lastPlayerEdited.toString();
           this.newResposibles[playerToEdit] = [responsible, newItem];
-
         }
+
+        console.log(this.newResposibles["player1"]);
       }
 
     },
@@ -355,8 +355,7 @@ export default {
       return allItems.sort((a, b) => a.id - b.id);
     },
     totalAbelPercentage() {
-      this.abelPercentage = Math.round(100 / this.totalMax * this.total);
-      return `${this.total}`;
+      return `${this.newResposibles["player1"][1]}`
     },
     totalBonzoPercentage() {
       this.bonzoPercentage = Math.round(100 / this.totalMax * this.totalBonzo);
