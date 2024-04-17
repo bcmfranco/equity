@@ -53,7 +53,7 @@
 
           <div class="type_totals_wrappers">
             <label for="totalBonzo">gasto total</label>
-            <input type="number" class="total_input" id="max_total" v-model="totalMax" disabled />
+            <input type="number" class="total_input" id="max_total" v-model="totalPlayerSpendt" disabled />
           </div>
         </div>
 
@@ -105,6 +105,7 @@ export default {
       totalDaniel: 0,
       totalEnzo: 0,
       totalMax: 0,
+      totalPlayerSpendt: 0,
       abelPercentage: 20,
       bonzoPercentage: 20,
       carlosPercentage: 20,
@@ -118,7 +119,8 @@ export default {
       newItemValue: null,
       newItemResponsible: null,
       newResposibles: {"player1": ["abel", 0], "player2": ["bonzo", 0], "player3": ["carlos", 0], "player4": ["daniel", 0], "player5": ["enzo", 0]},
-      lastPlayerEdited: 0
+      lastPlayerEdited: 0,
+      spendingObj: {}
     };
   },
   mounted() {
@@ -172,15 +174,23 @@ export default {
     enzoSum(){
       return this.totalBonzo = this.itemsEnzo.reduce((total, item) => total + parseInt(item.value), 0);
     },
-    maxSum(){
-      const abelTotal = this.items.reduce((total, item) => total + parseInt(item.value), 0);
-      const bonzoTotal = this.itemsBonzo.reduce((total, item) => total + parseInt(item.value), 0);
-      const carlosTotal = this.itemsCarlos.reduce((total, item) => total + parseInt(item.value), 0);
-      const danielTotal = this.itemsDaniel.reduce((total, item) => total + parseInt(item.value), 0);
-      const enzoTotal = this.itemsEnzo.reduce((total, item) => total + parseInt(item.value), 0);
+    totalSum(){ // Devuelve la suma de todos los gastos de todos los players
 
-      return this.totalMax = abelTotal + bonzoTotal + carlosTotal + danielTotal + enzoTotal;
+      for (let key in this.newResposibles) {
+        this.totalPlayerSpendt += this.newResposibles[key][1];
+      }
+
+      return this.totalPlayerSpendt;
     },
+    // maxSum(){
+    //   const abelTotal = this.items.reduce((total, item) => total + parseInt(item.value), 0);
+    //   const bonzoTotal = this.itemsBonzo.reduce((total, item) => total + parseInt(item.value), 0);
+    //   const carlosTotal = this.itemsCarlos.reduce((total, item) => total + parseInt(item.value), 0);
+    //   const danielTotal = this.itemsDaniel.reduce((total, item) => total + parseInt(item.value), 0);
+    //   const enzoTotal = this.itemsEnzo.reduce((total, item) => total + parseInt(item.value), 0);
+
+    //   return this.totalMax = abelTotal + bonzoTotal + carlosTotal + danielTotal + enzoTotal;
+    // },
     addItem2(newItem, responsible) {
 
       var existingMember = false;
@@ -194,6 +204,9 @@ export default {
         }
       }
 
+      // Esto parece estar funcionando ok
+      /// pese a que no se están mostrando por ningún lado los miembros
+
       if(existingMember){ // Player existente
         this.newResposibles[existingMemberKey] = [responsible, newItem];
       } else { // Nuevo player
@@ -205,8 +218,10 @@ export default {
         }
       }
 
+      
       // Hay que hacer el gasto total vaya sumando de forma reactiva
-
+      this.totalSum(); // Llamo al método que suma el total
+      
     },
 
     addItem(cateogry) {

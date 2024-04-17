@@ -1,0 +1,5 @@
++ Hacer que se vaya sumando el total de forma reactiva
++ Hacer que se listen los miembros cuando se van sumando
+++ El objeto con los gastos de cada uno ya está creado en this.newResposibles
++ Hacer que si se generan dos cargos para el mismo miembro, se sumen en vez de generar
+un cargo nuevo
