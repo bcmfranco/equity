@@ -176,9 +176,16 @@ export default {
     },
     totalSum(){ // Devuelve la suma de todos los gastos de todos los players
 
+      this.totalPlayerSpendt = 0;
       for (let key in this.newResposibles) {
         this.totalPlayerSpendt += this.newResposibles[key][1];
       }
+
+      console.log("player1", this.newResposibles.player1);
+      console.log("player2", this.newResposibles.player2);
+
+
+      // Está sumando mal cuando se le pasa más de un miebro
 
       return this.totalPlayerSpendt;
     },
