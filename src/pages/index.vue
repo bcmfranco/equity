@@ -199,7 +199,7 @@ export default {
       this.lastPlayerEdited++;
 
       if (existingMember) {
-        this.newResposibles[existingMemberKey] = [responsible, newItem];
+        this.newResposibles[existingMemberKey][1] += newItem;
       } else { // Nuevo player
         if (this.lastPlayerEdited < 6) {
           var playerToEdit = "player" + this.lastPlayerEdited.toString();
