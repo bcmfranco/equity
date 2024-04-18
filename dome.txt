@@ -1,2 +1,8 @@
-+ Hacer que se listen los miembros cuando se van sumando
-++ El objeto con los gastos de cada uno ya está creado en this.newResposibles
++ Botón de calcular
+++ Que lleva otro template donde muestra los gastos totales
++++ y el cálculo de quién le debe pagar a quién
+++++ más posiblemente un botón de whatsapp
+
++ Que al agregar un gasto limpie el input de item y responsible
+
++ Borrar código muerto

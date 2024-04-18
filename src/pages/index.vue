@@ -25,28 +25,28 @@
       <div id="sentence">
         <div id="total_wrapper">
           <div id="type_totals">
-            <div class="type_totals_wrappers" id="abel_total" v-if="lastPlayerEdited > 0">
-              <label for="total" style="font-weight: normal;">gastos de {{ this.newResposibles["player1"][0] }}</label>
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player1[1] > 0">
+              <label for="total" style="font-weight: normal;">{{ this.newResposibles["player1"][0] }}</label>
               <input class="total_input" :value='this.newResposibles["player1"][1]' disabled />
             </div>
 
-            <div class="type_totals_wrappers" id="abel_total" v-if="lastPlayerEdited > 1">
-              <label for="total" style="font-weight: normal;">gastos de {{ this.newResposibles["player2"][0] }}</label>
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player2[1] > 0">
+              <label for="total" style="font-weight: normal;">{{ this.newResposibles["player2"][0] }}</label>
               <input class="total_input" :value='this.newResposibles["player2"][1]' disabled />
             </div>
 
-            <div class="type_totals_wrappers" id="abel_total" v-if="lastPlayerEdited > 2">
-              <label for="total" style="font-weight: normal;">gastos de {{ this.newResposibles["player3"][0] }}</label>
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player3[1] > 0">
+              <label for="total" style="font-weight: normal;">{{ this.newResposibles["player3"][0] }}</label>
               <input class="total_input" :value='this.newResposibles["player3"][1]' disabled />
             </div>
 
-            <div class="type_totals_wrappers" id="abel_total" v-if="lastPlayerEdited > 3">
-              <label for="total" style="font-weight: normal;">gastos de {{ this.newResposibles["player4"][0] }}</label>
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player4[1] > 0">
+              <label for="total" style="font-weight: normal;">{{ this.newResposibles["player4"][0] }}</label>
               <input class="total_input" :value='this.newResposibles["player4"][1]' disabled />
             </div>
 
-            <div class="type_totals_wrappers" id="abel_total" v-if="lastPlayerEdited > 4">
-              <label for="total" style="font-weight: normal;">gastos de {{ this.newResposibles["player5"][0] }}</label>
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player5[1] > 0">
+              <label for="total" style="font-weight: normal;">{{ this.newResposibles["player5"][0] }}</label>
               <input class="total_input" :value='this.newResposibles["player5"][1]' disabled />
             </div>
           </div>
