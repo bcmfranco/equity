@@ -1,7 +1,7 @@
-+ Botón de calcular
-++ Que lleva otro template donde muestra los gastos totales
-+++ y el cálculo de quién le debe pagar a quién
-++++ más posiblemente un botón de whatsapp
++ Template de deuda
+++ Generar un nuevo template accesible cuando se presiona calcular
+++ Poner un botón de volver
+++ Listar quien le debe pagar a quién, para esto quizás haya que corregir calculate2
 
 + Que al agregar un gasto limpie el input de item y responsible
 

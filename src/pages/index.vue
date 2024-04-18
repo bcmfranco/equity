@@ -10,7 +10,7 @@
         <div id="input_wrapper">
           <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo gasto" />
           <input type="text" id="responsable" v-model.text="responsable" placeholder="Responsable" />
-          <button @click="addItem2(newItem, responsable)">Agregar</button>
+          <button class="go_button" @click="addItem2(newItem, responsable)">Agregar</button>
         </div>
 
 
@@ -57,10 +57,6 @@
           </div>
         </div>
 
-        <div id="input_wrapper">
-          <button @click="calculate2()">Calcular</button>
-        </div>
-
         <div id="deb_wrapper">
           <p v-if="calculateDebt().abel > 0">de Abel a Bonzo: {{ calculateDebt().abel }}</p>
           <p v-if="calculateDebt().bonzo > 0">de Bonzo a Abel: {{ calculateDebt().bonzo }}</p>
@@ -71,10 +67,9 @@
 
       </div>
 
-      <!-- <div id="saving">
-        <input type="text" class="" id="phone_number" v-model="phoneNumber" placeholder="+543413690080"/>
-        <button @click="prepareWhatsAppMessage">Enviar datos por WhatsApp</button>
-      </div>       -->
+      <div id="debt_wrapper">
+        <button class="go_button" @click="calculate2()">Calcular</button>
+      </div>
 
     </div>
 
@@ -444,8 +439,9 @@ export default {
   border: 1px solid lightgrey;
 }
 
-#input_wrapper button {
+.go_button {
   height: 40px;
+  width: 100%;
   border: none;
   border-radius: 5px;
   background-color: #007bff;
@@ -457,7 +453,7 @@ export default {
   text-indent: 5px;
 }
 
-#input_wrapper button:hover {
+.go_button:hover {
   background-color: #0056b3;
 }
 
@@ -501,6 +497,19 @@ export default {
 
 #total_wrapper #type_totals{
   border-bottom: 1px solid lightgray;
+}
+
+#debt_wrapper{
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 10px 0px;
+  width: 100%;
+  color: #333;
+  padding: 10px 20px;
+  width: 300px;
 }
 
 .total_input {
