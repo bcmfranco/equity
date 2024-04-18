@@ -181,24 +181,9 @@ export default {
         this.totalPlayerSpendt += this.newResposibles[key][1];
       }
 
-      console.log("player1", this.newResposibles.player1);
-      console.log("player2", this.newResposibles.player2);
-
-
-      // Está sumando mal cuando se le pasa más de un miebro
-
       return this.totalPlayerSpendt;
     },
-    // maxSum(){
-    //   const abelTotal = this.items.reduce((total, item) => total + parseInt(item.value), 0);
-    //   const bonzoTotal = this.itemsBonzo.reduce((total, item) => total + parseInt(item.value), 0);
-    //   const carlosTotal = this.itemsCarlos.reduce((total, item) => total + parseInt(item.value), 0);
-    //   const danielTotal = this.itemsDaniel.reduce((total, item) => total + parseInt(item.value), 0);
-    //   const enzoTotal = this.itemsEnzo.reduce((total, item) => total + parseInt(item.value), 0);
-
-    //   return this.totalMax = abelTotal + bonzoTotal + carlosTotal + danielTotal + enzoTotal;
-    // },
-    addItem2(newItem, responsible) {
+    addItem2(newItem, responsible) { // Agrega un gasto a un player
 
       var existingMember = false;
 
@@ -211,22 +196,17 @@ export default {
         }
       }
 
-      // Esto parece estar funcionando ok
-      /// pese a que no se están mostrando por ningún lado los miembros
+      this.lastPlayerEdited++;
 
-      if(existingMember){ // Player existente
+      if (existingMember) {
         this.newResposibles[existingMemberKey] = [responsible, newItem];
       } else { // Nuevo player
-
-        if(this.lastPlayerEdited < 6){
-          this.lastPlayerEdited ++;
-          var playerToEdit = "player"+this.lastPlayerEdited.toString();
+        if (this.lastPlayerEdited < 6) {
+          var playerToEdit = "player" + this.lastPlayerEdited.toString();
           this.newResposibles[playerToEdit] = [responsible, newItem];
         }
       }
-
       
-      // Hay que hacer el gasto total vaya sumando de forma reactiva
       this.totalSum(); // Llamo al método que suma el total
       
     },

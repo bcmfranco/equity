@@ -1,6 +1,3 @@
-+ Corregir maxSum() para que sume bien en el caso de que se pasen más de 1 miembro
-++ Posiblemente los miembros individuales estén sumando mal
-
 + Hacer que se listen los miembros cuando se van sumando
 ++ El objeto con los gastos de cada uno ya está creado en this.newResposibles
 + Hacer que si se generan dos cargos para el mismo miembro, se sumen en vez de generar
