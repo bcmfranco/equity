@@ -57,6 +57,10 @@
           </div>
         </div>
 
+        <div id="input_wrapper">
+          <button @click="calculate2()">Calcular</button>
+        </div>
+
         <div id="deb_wrapper">
           <p v-if="calculateDebt().abel > 0">de Abel a Bonzo: {{ calculateDebt().abel }}</p>
           <p v-if="calculateDebt().bonzo > 0">de Bonzo a Abel: {{ calculateDebt().bonzo }}</p>
@@ -120,7 +124,8 @@ export default {
       newItemResponsible: null,
       newResposibles: {"player1": ["abel", 0], "player2": ["bonzo", 0], "player3": ["carlos", 0], "player4": ["daniel", 0], "player5": ["enzo", 0]},
       lastPlayerEdited: 0,
-      spendingObj: {}
+      spendingObj: {},
+      playerDebts: {}
     };
   },
   mounted() {
@@ -210,6 +215,23 @@ export default {
       this.totalSum(); // Llamo al método que suma el total
       
     },
+    calculate2(){
+
+      if(this.totalPlayerSpendt > 0){
+
+        var averageSpent = this.totalPlayerSpendt / this.lastPlayerEdited;
+
+        for (let key in this.newResposibles) {
+          var individualPlayerSpent = this.newResposibles[key][1];
+          var debt = averageSpent - individualPlayerSpent;
+          this.newResposibles[key][2] = debt;
+          this.playerDebts[key + 'Debt'] = debt;
+        }
+
+        return this.newResposibles;
+      }
+
+    },  
 
     addItem(cateogry) {
 
