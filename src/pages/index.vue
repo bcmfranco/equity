@@ -4,7 +4,7 @@
       <Brander />
     </div>
 
-    <div id="content">
+    <div ref="wizzard1" class="wizzard">
 
       <div id="list">
         <div id="input_wrapper">
@@ -72,6 +72,16 @@
       </div>
 
     </div>
+
+    <div ref="wizzard2" class="wizzard" wizzard="2" style="display: none;">
+    
+      poniendo estaba la gansa
+
+      <div id="debt_wrapper">
+        <button class="go_button" @click="back()">Volver</button>
+      </div>
+    
+    </div>  
 
     <div>
       <Footer />
@@ -223,10 +233,21 @@ export default {
           this.playerDebts[key + 'Debt'] = debt;
         }
 
+        // Muestro el wizzard 2 y oculto el 1
+        this.$refs.wizzard1.style.display = 'none';
+        this.$refs.wizzard2.style.display = 'block';
+
         return this.newResposibles;
       }
 
-    },  
+    },
+    back(){
+
+        // Muestro el wizzard 1 y oculto el 2
+        this.$refs.wizzard1.style.display = 'block';
+        this.$refs.wizzard2.style.display = 'none';
+
+    },
 
     addItem(cateogry) {
 
@@ -410,13 +431,13 @@ export default {
   width: 50%;
 }
 
-#content {
+.wizzard {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#content #list{
+.wizzard #list{
   width: 100%;
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
