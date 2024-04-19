@@ -2,10 +2,10 @@
 
   <div id="gumcom_brander">
     <div id="logotype">
-      <div>EQ</div>
+      <div>PO</div>
     </div>
     <div id="isotype">
-      <h1>equity</h1>
+      <h1>poniendo estaba la gansa</h1>
       <h2>dividí gastos sin descargar una app</h2>
     </div>
   </div>
