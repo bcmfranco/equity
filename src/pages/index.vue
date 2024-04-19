@@ -221,11 +221,10 @@ export default {
       
     },
     calculate2(){
-
       if(this.totalPlayerSpendt > 0){
-
         var averageSpent = this.totalPlayerSpendt / this.lastPlayerEdited;
 
+        // Calcula las deudas individuales de cada jugador
         for (let key in this.newResposibles) {
           var individualPlayerSpent = this.newResposibles[key][1];
           var debt = averageSpent - individualPlayerSpent;
@@ -233,14 +232,36 @@ export default {
           this.playerDebts[key + 'Debt'] = debt;
         }
 
-        // Muestro el wizzard 2 y oculto el 1
+        // Realiza las transacciones
+        for (let key in this.newResposibles) {
+          var playerDebt = this.playerDebts[key + 'Debt'];
+
+          // Busca a quién le debe pagar el jugador actual
+          for (let otherKey in this.newResposibles) {
+            if (key !== otherKey) {
+              var otherPlayerDebt = this.playerDebts[otherKey + 'Debt'];
+
+              // Si el jugador debe pagar y el otro jugador debe recibir
+              if (playerDebt > 0 && otherPlayerDebt < 0) {
+                var amountToPay = Math.min(-otherPlayerDebt, playerDebt);
+                this.newResposibles[key][3] = `le tiene que pagar ${amountToPay} a ${otherKey}`;
+                this.newResposibles[otherKey][3] = `recibe ${amountToPay} de ${key}`;
+                this.playerDebts[key + 'Debt'] -= amountToPay;
+                this.playerDebts[otherKey + 'Debt'] += amountToPay;
+                console.log(`${key} paga ${amountToPay} a ${otherKey}`);
+              }
+            }
+          }
+        }
+
+        // Muestra el wizzard 2 y oculta el 1
         this.$refs.wizzard1.style.display = 'none';
         this.$refs.wizzard2.style.display = 'block';
 
         return this.newResposibles;
       }
-
     },
+
     back(){
 
         // Muestro el wizzard 1 y oculto el 2
