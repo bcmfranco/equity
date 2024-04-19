@@ -191,9 +191,13 @@ export default {
                 // Si el jugador debe pagar y el otro jugador debe recibir
                 if (playerDebt > 0 && otherPlayerDebt < 0) {
                   var amountToPay = Math.min(-otherPlayerDebt, playerDebt);
-                  this.newResposibles[key][3] = `paga ${amountToPay} a ${otherKey}`;
-                  this.newResposibles[otherKey][3] = `recibe ${amountToPay} de ${key}`;
-                  // console.log(`${key} paga ${amountToPay} a ${otherKey}`);
+                  var payer_name = this.newResposibles[key][0];
+                  var reciber_name = this.newResposibles[otherKey][0];
+
+                  this.newResposibles[key][3] = `paga ${amountToPay} a ${reciber_name}`;
+                  this.newResposibles[otherKey][3] = `recibe ${amountToPay} de ${payer_name}`;
+
+                  console.log(`${payer_name} paga ${amountToPay} a ${reciber_name}`);
                 }
               }
             }

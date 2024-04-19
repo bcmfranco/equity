@@ -1,11 +1,8 @@
-+ Listar quien le debe pagar a quién, para esto quizás haya que corregir calculate2
-+++ Falta que le pase bien el nombre de los players pero eso se soluciona buscándolos en el objeto
-
-+ Tiene que dejar agregar gastos de $0, porque es una posiblidad, no así los gastos en negativo
-+ Aparece bonzo cuando se prueban tres personas
++ Modificar el estilo del input de gastos y responsables, tiene que esyar en una sola línea
++ Agregarle estilo de lista al debt_wrapper
 
 + Que al agregar un gasto limpie el input de item y responsible
++ Tiene que dejar agregar gastos de $0, porque es una posiblidad, no así los gastos en negativo
 
-+ Borrar código muerto
 
 + Agregar funcionalidad de whatsapp
