@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div id="sentence">
+      <div class="sentence">
         <div id="total_wrapper">
           <div class="type_totals">
             <div class="type_totals_wrappers" v-if="this.newResposibles.player1[1] > 0">
@@ -66,6 +66,8 @@
 
     <div ref="wizzard2" class="wizzard" wizzard="2" style="display: none;">
     
+      <div class="sentence">
+
         <div class="debt_totals">
             <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player1[2] > 0">
               <span>{{ this.newResposibles["player1"][0] }}</span>
@@ -91,8 +93,9 @@
               <span>{{ this.newResposibles["player5"][0] }}</span>
               <span>{{ this.newResposibles["player5"][3] }}</span>
             </div>
-
           </div>
+
+      </div>
 
       <div class="btn_wrapper">
         <button class="go_button" @click="back()">Volver</button>
@@ -317,7 +320,7 @@ export default {
   font-size: 14px;
 }
 
-#sentence{
+.sentence{
   border-radius: 10px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -328,7 +331,7 @@ export default {
   width: 300px;
 }
 
-#sentence #total_wrapper {
+.sentence #total_wrapper {
   margin-top: 20px;
   border-bottom: 1px solid #ccc;
 }
