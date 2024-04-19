@@ -1,8 +1,3 @@
-+ Template de deuda
-++ Lo mejor es wrappear todo dentro de un div y ocultarlo al presionar el botón
-+++ de otra forma puede haber error con los datos de js
-
-++ Poner un botón de volver
 ++ Listar quien le debe pagar a quién, para esto quizás haya que corregir calculate2
 
 + Que al agregar un gasto limpie el input de item y responsible
