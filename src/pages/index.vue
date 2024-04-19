@@ -24,7 +24,7 @@
 
       <div id="sentence">
         <div id="total_wrapper">
-          <div id="type_totals">
+          <div class="type_totals">
             <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player1[1] > 0">
               <label for="total" style="font-weight: normal;">{{ this.newResposibles["player1"][0] }}</label>
               <input class="total_input" :value='this.newResposibles["player1"][1]' disabled />
@@ -56,18 +56,9 @@
             <input type="number" class="total_input" id="max_total" v-model="totalPlayerSpendt" disabled />
           </div>
         </div>
-
-        <div id="deb_wrapper">
-          <p v-if="calculateDebt().abel > 0">de Abel a Bonzo: {{ calculateDebt().abel }}</p>
-          <p v-if="calculateDebt().bonzo > 0">de Bonzo a Abel: {{ calculateDebt().bonzo }}</p>
-          <p v-if="calculateDebt().carlos > 0">de Carlos a Daniel: {{ calculateDebt().carlos }}</p>
-          <p v-if="calculateDebt().daniel > 0">de Daniel a Enzo: {{ calculateDebt().daniel }}</p>
-          <p v-if="calculateDebt().enzo > 0">de Enzo a Abel: {{ calculateDebt().enzo }}</p>
-        </div>
-
       </div>
 
-      <div id="debt_wrapper">
+      <div class="btn_wrapper">
         <button class="go_button" @click="calculate2()">Calcular</button>
       </div>
 
@@ -77,7 +68,36 @@
     
       poniendo estaba la gansa
 
-      <div id="debt_wrapper">
+
+        <div class="debt_totals">
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player1[2] > 0">
+              <span>{{ this.newResposibles["player1"][0] }}</span>
+              <span>{{ this.newResposibles["player1"][3] }}</span>
+            </div>
+
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player2[2] > 0">
+              <span>{{ this.newResposibles["player2"][0] }}</span>
+              <span>{{ this.newResposibles["player2"][3] }}</span>
+            </div>
+
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player3[2] > 0">
+              <span>{{ this.newResposibles["player3"][0] }}</span>
+              <span>{{ this.newResposibles["player3"][3] }}</span>
+            </div>
+
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player4[2] > 0">
+              <span>{{ this.newResposibles["player4"][0] }}</span>
+              <span>{{ this.newResposibles["player4"][3] }}</span>
+            </div>
+
+            <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player5[2] > 0">
+              <span>{{ this.newResposibles["player5"][0] }}</span>
+              <span>{{ this.newResposibles["player5"][3] }}</span>
+            </div>
+
+          </div>
+
+      <div class="btn_wrapper">
         <button class="go_button" @click="back()">Volver</button>
       </div>
     
@@ -92,8 +112,6 @@
 <script>
 import Brander from '../../public/components/brander.vue';
 import Footer from '../../public/components/footer.vue';
-
-// Hay que revisar las cosas que se están mandando por wsp
 
 export default {
   components: {
@@ -127,7 +145,7 @@ export default {
       bonzo: 0,
       newItemValue: null,
       newItemResponsible: null,
-      newResposibles: {"player1": ["abel", 0], "player2": ["bonzo", 0], "player3": ["carlos", 0], "player4": ["daniel", 0], "player5": ["enzo", 0]},
+      newResposibles: {"player1": ["player1", null], "player2": ["player2", null], "player3": ["player3", null], "player4": ["player4", null], "player5": ["player5", null]},
       lastPlayerEdited: 0,
       spendingObj: {},
       playerDebts: {}
@@ -226,29 +244,31 @@ export default {
 
         // Calcula las deudas individuales de cada jugador
         for (let key in this.newResposibles) {
-          var individualPlayerSpent = this.newResposibles[key][1];
-          var debt = averageSpent - individualPlayerSpent;
-          this.newResposibles[key][2] = debt;
-          this.playerDebts[key + 'Debt'] = debt;
+          if(this.newResposibles[key][1] != null){
+            var individualPlayerSpent = this.newResposibles[key][1];
+            var debt = averageSpent - individualPlayerSpent;
+            this.newResposibles[key][2] = debt;
+            this.playerDebts[key + 'Debt'] = debt;
+          }
         }
 
         // Realiza las transacciones
         for (let key in this.newResposibles) {
-          var playerDebt = this.playerDebts[key + 'Debt'];
+          if(this.newResposibles[key][1] != null){
+            var playerDebt = this.playerDebts[key + 'Debt'];
 
-          // Busca a quién le debe pagar el jugador actual
-          for (let otherKey in this.newResposibles) {
-            if (key !== otherKey) {
-              var otherPlayerDebt = this.playerDebts[otherKey + 'Debt'];
+            // Busca a quién le debe pagar el jugador actual
+            for (let otherKey in this.newResposibles) {
+              if (key !== otherKey) {
+                var otherPlayerDebt = this.playerDebts[otherKey + 'Debt'];
 
-              // Si el jugador debe pagar y el otro jugador debe recibir
-              if (playerDebt > 0 && otherPlayerDebt < 0) {
-                var amountToPay = Math.min(-otherPlayerDebt, playerDebt);
-                this.newResposibles[key][3] = `le tiene que pagar ${amountToPay} a ${otherKey}`;
-                this.newResposibles[otherKey][3] = `recibe ${amountToPay} de ${key}`;
-                this.playerDebts[key + 'Debt'] -= amountToPay;
-                this.playerDebts[otherKey + 'Debt'] += amountToPay;
-                console.log(`${key} paga ${amountToPay} a ${otherKey}`);
+                // Si el jugador debe pagar y el otro jugador debe recibir
+                if (playerDebt > 0 && otherPlayerDebt < 0) {
+                  var amountToPay = Math.min(-otherPlayerDebt, playerDebt);
+                  this.newResposibles[key][3] = `paga ${amountToPay} a ${otherKey}`;
+                  this.newResposibles[otherKey][3] = `recibe ${amountToPay} de ${key}`;
+                  // console.log(`${key} paga ${amountToPay} a ${otherKey}`);
+                }
               }
             }
           }
@@ -258,6 +278,7 @@ export default {
         this.$refs.wizzard1.style.display = 'none';
         this.$refs.wizzard2.style.display = 'block';
 
+        this.listPayers();
         return this.newResposibles;
       }
     },
@@ -267,6 +288,16 @@ export default {
         // Muestro el wizzard 1 y oculto el 2
         this.$refs.wizzard1.style.display = 'block';
         this.$refs.wizzard2.style.display = 'none';
+
+    },
+
+    listPayers(){
+
+      for (let key in this.newResposibles) {
+        if(this.newResposibles[key][2] > 0){
+          console.log(this.newResposibles[key]);
+        }
+      }
 
     },
 
@@ -537,11 +568,11 @@ export default {
   border-bottom: 1px solid #ccc;
 }
 
-#total_wrapper #type_totals{
+#total_wrapper .type_totals{
   border-bottom: 1px solid lightgray;
 }
 
-#debt_wrapper{
+.btn_wrapper{
   display: flex;
   justify-content: center;
   border-radius: 10px;
@@ -563,7 +594,7 @@ export default {
   font-size: 16px;
 }
 
-#type_totals {
+.type_totals {
   display: flex;
   flex-direction: column;
 }
@@ -579,6 +610,12 @@ export default {
 .type_totals_wrappers .total_input{
   border: none;
   background-color: inherit;
+}
+
+.debt_totals .type_totals_wrappers{
+  display: grid;
+  grid-template-columns: 25% auto;
+  padding: 0px 10px;
 }
 
 #saving{
