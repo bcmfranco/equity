@@ -1,5 +1,8 @@
 ++ Listar quien le debe pagar a quién, para esto quizás haya que corregir calculate2
 
++ Tiene que dejar agregar gastos de $0, porque es una posiblidad, no así los gastos en negativo
++ Aparece bonzo cuando se prueban tres personas
+
 + Que al agregar un gasto limpie el input de item y responsible
 
 + Borrar código muerto
