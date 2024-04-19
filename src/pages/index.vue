@@ -12,14 +12,6 @@
           <input type="text" id="responsable" v-model.text="responsable" placeholder="Responsable" />
           <button class="go_button" @click="addItem2(newItem, responsable)">Agregar</button>
         </div>
-
-
-        <div id="item_list">
-          <div v-for="item in sortedItems" :key="item.id" class="item">
-            <span>{{ item.value }} {{ item.type }}</span>
-            <button @click="deleteItem(item.id)">x</button>
-          </div>
-        </div>
       </div>
 
       <div class="sentence">
@@ -65,9 +57,15 @@
     </div>
 
     <div ref="wizzard2" class="wizzard" wizzard="2" style="display: none;">
+
+      <div class="sentence">
+        <div class="type_totals_wrappers">
+            <label for="totalBonzo">gasto total</label>
+            <input type="number" class="total_input" id="max_total" v-model="totalPlayerSpendt" disabled />
+          </div>
+      </div>
     
       <div class="sentence">
-
         <div class="debt_totals">
             <div class="type_totals_wrappers" id="abel_total" v-if="this.newResposibles.player1[2] > 0">
               <span>{{ this.newResposibles["player1"][0] }}</span>
@@ -296,28 +294,6 @@ export default {
 
 .go_button:hover {
   background-color: #0056b3;
-}
-
-#item_list {
-  width: 300px;
-  margin-top: 20px;
-  padding: 20px;
-  color: #333;
-}
-
-#item_list .item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  border-bottom: 1px solid #ccc;
-  color: #333;
-}
-
-#item_list button {
-  border: none;
-  background-color: inherit;
-  font-size: 14px;
 }
 
 .sentence{
