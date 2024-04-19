@@ -59,7 +59,7 @@
     <div ref="wizzard2" class="wizzard" wizzard="2" style="display: none;">
 
       <div class="sentence">
-        <div class="type_totals_wrappers">
+          <div class="type_totals_wrappers">
             <label for="totalBonzo">gasto total</label>
             <input type="number" class="total_input" id="max_total" v-model="totalPlayerSpendt" disabled />
           </div>
