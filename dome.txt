@@ -1,4 +1,6 @@
-++ Listar quien le debe pagar a quién, para esto quizás haya que corregir calculate2
++ Listar quien le debe pagar a quién, para esto quizás haya que corregir calculate2
+++ La creación de transacciones funciona bien
++++ Falta que le pase bien el nombre de los players pero eso se soluciona buscándolos en el objeto
 
 + Tiene que dejar agregar gastos de $0, porque es una posiblidad, no así los gastos en negativo
 + Aparece bonzo cuando se prueban tres personas
